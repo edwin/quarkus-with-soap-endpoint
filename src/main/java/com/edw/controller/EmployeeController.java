@@ -25,7 +25,7 @@ public class EmployeeController implements EmployeeServicePortType {
     @Inject
     EmployeeService employeeService;
 
-    GregorianCalendar gregorianCalendar = new GregorianCalendar();
+    private GregorianCalendar gregorianCalendar = new GregorianCalendar();
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
