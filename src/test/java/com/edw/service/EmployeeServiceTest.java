@@ -5,6 +5,7 @@ import com.edw.repository.EmployeeRepository;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -27,11 +28,13 @@ public class EmployeeServiceTest {
     @Inject
     EmployeeService employeeService;
 
+    @BeforeEach
+    public void reset() {
+        employeeRepository.deleteAll();
+    }
+
     @Test
     public void test_doCustomQuery() {
-
-        employeeRepository.deleteAll();
-
         employeeRepository.persist(EmployeeModel.builder()
                 .firstname("test03")
                 .lastname("test04")
@@ -49,7 +52,7 @@ public class EmployeeServiceTest {
             Assertions.assertEquals(count, 1);
         }
 
-        Assertions.assertTrue(objects.size() > 0);
+        Assertions.assertTrue(!objects.isEmpty());
     }
 
 }
