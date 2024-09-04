@@ -30,6 +30,8 @@ public class EmployeeServiceTest {
     @Test
     public void test_doCustomQuery() {
 
+        employeeRepository.deleteAll();
+
         employeeRepository.persist(EmployeeModel.builder()
                 .firstname("test03")
                 .lastname("test04")
