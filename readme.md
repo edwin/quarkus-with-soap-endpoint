@@ -26,7 +26,9 @@ INSERT INTO test_db.t_employee (gender, birthdate, firstname, lastname) VALUES (
 INSERT INTO test_db.t_employee (gender, birthdate, firstname, lastname) VALUES ('F', '2024-08-28 10:00:30.000000', 'some', 'random');
 ```
 
-## Sample Request
+## getEmployeesByName API
+
+### Sample Request
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://localhost/employee">
    <soapenv:Header/>
@@ -36,7 +38,7 @@ INSERT INTO test_db.t_employee (gender, birthdate, firstname, lastname) VALUES (
 </soapenv:Envelope>
 ```
 
-## Sample Response
+### Sample Response
 ```xml
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:Body>
@@ -44,6 +46,29 @@ INSERT INTO test_db.t_employee (gender, birthdate, firstname, lastname) VALUES (
          <employee id="2" firstname="some" lastname="random" birthdate="2024-08-28+07:00" gender="F"/>
          <employee id="1" firstname="random" lastname="name" birthdate="2024-08-28+07:00" gender="M"/>
       </EmployeesResponse>
+   </soap:Body>
+</soap:Envelope>
+```
+
+## getEmployeeById API
+
+### Sample Request
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:emp="http://localhost/employee">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <emp:EmployeeByIdRequest id="1"/>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+### Sample Response
+```xml
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <EmployeeResponse xmlns="http://localhost/employee">
+         <employee id="1" firstname="random" lastname="name" birthdate="2024-08-28+07:00" gender="M"/>
+      </EmployeeResponse>
    </soap:Body>
 </soap:Envelope>
 ```
