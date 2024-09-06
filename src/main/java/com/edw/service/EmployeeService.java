@@ -31,7 +31,10 @@ public class EmployeeService {
     }
 
     public List<Object[]> doCustomQuery() {
-        return em.createNativeQuery("select distinct(gender), count(gender) from T_EMPLOYEE group by gender order by count(gender) desc")
+        return em.createNativeQuery("select distinct(gender), count(gender) " +
+                        " from T_EMPLOYEE WHERE gender != :gender " +
+                        " group by gender order by count(gender) desc")
+                .setParameter("gender", "X")
                 .getResultList();
     }
 
@@ -43,6 +46,10 @@ public class EmployeeService {
                         firstname,
                         lastname)
                 .stream().toList();
+    }
+
+    public EmployeeModel findById(Long id) {
+        return employeeRepository.findById(id);
     }
 
 }

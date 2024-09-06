@@ -56,6 +56,25 @@ public class EmployeeController implements EmployeeServicePortType {
 
     @Override
     public EmployeeResponse getEmployeeById(EmployeeByIdRequest parameters) {
-        return null;
+
+        EmployeeModel employeeModel = employeeService.findById(parameters.getId());
+
+        Employee employee = new Employee();
+        employee.setGender(employeeModel.getGender());
+        employee.setId(employeeModel.getId());
+        employee.setFirstname(employeeModel.getFirstname());
+        employee.setLastname(employeeModel.getLastname());
+
+        try {
+            gregorianCalendar.setTime(employeeModel.getBirthdate());
+            employee.setBirthdate(DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar));
+        } catch (Exception ex) {
+            logger.error(ex.getMessage(), ex);
+        }
+
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.setEmployee(employee);
+
+        return employeeResponse;
     }
 }

@@ -31,17 +31,17 @@ public class EmployeeServiceTest {
     @BeforeEach
     public void reset() {
         employeeRepository.deleteAll();
-    }
 
-    @Test
-    public void test_doCustomQuery() {
         employeeRepository.persist(EmployeeModel.builder()
                 .firstname("test03")
                 .lastname("test04")
                 .gender("F")
                 .birthdate(new Date())
                 .build());
+    }
 
+    @Test
+    public void test_doCustomQuery() {
         List<Object[]> objects = employeeService.doCustomQuery();
 
         for (Object[] object : objects) {
