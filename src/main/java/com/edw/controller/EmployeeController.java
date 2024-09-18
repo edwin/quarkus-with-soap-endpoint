@@ -1,9 +1,11 @@
 package com.edw.controller;
 
+import com.edw.interceptor.AuditTrailInterceptor;
 import com.edw.model.EmployeeModel;
 import com.edw.service.EmployeeService;
 import com.edw.wsdl.employee.*;
 import jakarta.inject.Inject;
+import jakarta.interceptor.Interceptors;
 import jakarta.jws.WebService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

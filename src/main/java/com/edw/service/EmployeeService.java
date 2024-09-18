@@ -1,5 +1,6 @@
 package com.edw.service;
 
+import com.edw.interceptor.AuditTrail;
 import com.edw.model.EmployeeModel;
 import com.edw.repository.EmployeeRepository;
 import io.quarkus.panache.common.Sort;
@@ -18,6 +19,7 @@ import java.util.List;
  * 28 Aug 2024 9:04
  */
 @ApplicationScoped
+@AuditTrail
 public class EmployeeService {
 
     @Inject
